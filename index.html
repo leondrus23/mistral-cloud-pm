@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Closing Mistral's US Distribution Gap — Leo Thornton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --navy: #0d2137;
+      --navy-light: #1a3a5c;
+      --teal: #0091ae;
+      --teal-light: #e6f5f8;
+      --amber: #f59e0b;
+      --text: #1a1a2e;
+      --meta: #6b7280;
+      --border: #e5e7eb;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 72px 24px 64px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+
+    header h1 span { color: #5ec9e0; }
+
+    header .sub {
+      font-size: 18px;
+      color: #94a3b8;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--meta);
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+
+    /* ── INSIGHT BLOCK ── */
+    .insight-block { background: var(--navy); color: white; }
+
+    .insight-block .section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .insight-block .section { grid-template-columns: 1fr; }
+    }
+
+    .insight-left h2 { color: white; margin-bottom: 16px; }
+    .insight-left p { color: #94a3b8; font-size: 16px; margin-bottom: 12px; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .stat-card .number {
+      font-size: 28px;
+      font-weight: 800;
+      color: #5ec9e0;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .label { font-size: 12px; color: #94a3b8; }
+
+    /* ── PLAYS ── */
+    .plays-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .play-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .play-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--teal);
+    }
+
+    .play-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--teal-light);
+      color: var(--teal);
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .play-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .play-tag {
+      display: inline-block;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .play-card p {
+      font-size: 14px;
+      color: var(--meta);
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .play-targets {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .play-targets .targets-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--meta);
+      margin-bottom: 10px;
+    }
+
+    .target-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .chip {
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    .proof-block {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: #fefdf5;
+      border-left: 3px solid var(--amber);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .proof-block .proof-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+
+    .proof-block p { font-size: 13px; color: #78716c; margin: 0; }
+
+    /* ── 90-DAY PLAN ── */
+    .plan-bg { background: var(--navy); }
+    .plan-bg h2 { color: white; }
+    .plan-bg .section-label { color: #5ec9e0; }
+    .plan-bg .section-sub { color: #94a3b8; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    @media (max-width: 640px) { .timeline { grid-template-columns: 1fr; } }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 16.67%;
+      right: 16.67%;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 640px) { .timeline::before { display: none; } }
+
+    .phase { padding: 0 20px 0; position: relative; }
+
+    .phase-dot {
+      width: 56px;
+      height: 56px;
+      background: rgba(94, 201, 224, 0.15);
+      border: 2px solid #5ec9e0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: #5ec9e0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .phase h4 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #5ec9e0;
+      margin-bottom: 8px;
+    }
+
+    .phase h3 { font-size: 17px; font-weight: 700; color: white; margin-bottom: 12px; }
+
+    .phase ul { list-style: none; padding: 0; }
+
+    .phase ul li {
+      font-size: 13.5px;
+      color: #94a3b8;
+      padding: 5px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .phase ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #5ec9e0;
+      font-size: 12px;
+    }
+
+    .phase-deliverable {
+      margin-top: 16px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .phase-deliverable .del-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+
+    .phase-deliverable p { font-size: 12.5px; color: #94a3b8; }
+
+    /* ── WHY ME ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .why-icon { font-size: 24px; margin-bottom: 12px; }
+
+    .why-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+
+    .why-card p { font-size: 13.5px; color: var(--meta); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #94a3b8;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    footer h3 { font-size: 22px; font-weight: 700; color: white; margin-bottom: 8px; }
+    footer p { font-size: 15px; margin-bottom: 24px; }
+
+    .contact-link {
+      display: inline-block;
+      background: var(--teal);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+
+    .contact-link:hover { opacity: 0.9; }
+
+    footer .credits { font-size: 12px; color: #475569; margin-top: 16px; }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <p class="eyebrow">Pre-Interview Work Product · Product Manager, Cloud Partnerships</p>
+  <h1>Closing Mistral's <span>US Enterprise Distribution Gap</span></h1>
+  <p class="sub">A hyperscaler marketplace strategy to make Mistral AI Studio co-sell eligible — and capture the enterprise procurement channel that European growth proves is real</p>
+  <div class="badge-row">
+    <span class="badge">Leo Thornton</span>
+    <span class="badge">15 Years Cloud &amp; AI Partnerships</span>
+    <span class="badge">$30M+ Zero-to-One Pipeline</span>
+    <span class="badge">Ex-AWS · 3 Roles</span>
+  </div>
+</header>
+
+<!-- ── INSIGHT ── -->
+<div class="insight-block">
+  <div class="section">
+    <div class="insight-left">
+      <p class="section-label">The Distribution Gap</p>
+      <h2>The product wins in Europe. US enterprise procurement is structurally blocked.</h2>
+      <p>Mistral's $400M ARR is predominantly European. That's not a model quality problem — the models are winning. It's a distribution problem.</p>
+      <p>Regulated US enterprise buyers — FSI, HCLS, Federal — can't purchase Mistral AI Studio through their AWS EDP cost centers because Mistral is not CPPO co-sell eligible on AWS. Anthropic (Bedrock) and Cohere (SageMaker JumpStart) solved this. Mistral has Azure. Azure alone won't close the US enterprise market.</p>
+      <p><strong style="color:white">Every US enterprise account with an AWS EDP commitment that wants Mistral is currently forced to transact outside their cloud cost center — or choose a co-sell eligible model instead.</strong></p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="number">$400M</div>
+        <div class="label">Mistral ARR — 20x growth in 12 months</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">$100B+</div>
+        <div class="label">AWS EDP committed spend (2025)</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">2</div>
+        <div class="label">Hyperscalers where Mistral lacks co-sell eligibility (AWS + GCP)</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">90 days</div>
+        <div class="label">Time to first co-sell eligible listing — if started now</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── THREE PLAYS ── -->
+<div style="background: var(--bg);">
+  <div class="section">
+    <p class="section-label">Partnership Strategy</p>
+    <h2>Three Plays to Open the US Enterprise Channel</h2>
+    <p class="section-sub">Each play targets a different layer of the enterprise procurement stack. Together, they convert Mistral from a direct-API purchase into a cloud-native transaction — the way regulated US enterprise actually buys AI.</p>
+
+    <div class="plays-grid">
+
+      <!-- Play 1 -->
+      <div class="play-card">
+        <div class="play-number">1</div>
+        <span class="play-tag">AWS Marketplace</span>
+        <h3>CPPO Co-Sell Eligibility + IP Co-Sell Registration</h3>
+        <p>Negotiate and execute an AWS Marketplace listing for Mistral AI Studio with CPPO (Channel Partner Private Offer) structure enabled, IP co-sell registered under AWS ISV Partner Path, and EDP drawdown mechanics configured. Once live, every AWS PDM running AI deals in FSI and HCLS becomes a Mistral distribution point — without requiring direct sales engagement.</p>
+        <p>This is not an engineering integration. It is a commercial structure decision that can move in 30–60 days with the right internal owner.</p>
+        <div class="play-targets">
+          <div class="targets-label">Named Targets</div>
+          <div class="target-chips">
+            <span class="chip">AWS Marketplace BD</span>
+            <span class="chip">AWS ISV Partner Path</span>
+            <span class="chip">AWS PDMs · FSI vertical</span>
+            <span class="chip">AWS PDMs · HCLS vertical</span>
+          </div>
+        </div>
+        <div class="proof-block">
+          <div class="proof-label">Proof Point</div>
+          <p>Built AWS Migration Competency at Cutover — the same commercial motion unlocked MAP funding and expanded co-sell coverage across NAMER, EMEA, ANZ, and APJ. The mechanics are identical: define the integration, register the co-sell motion, enable the field.</p>
+        </div>
+      </div>
+
+      <!-- Play 2 -->
+      <div class="play-card">
+        <div class="play-number">2</div>
+        <span class="play-tag">GCP ISV Springboard</span>
+        <h3>GCP AI Priority Co-Sell — Register Before the Field Moves On</h3>
+        <p>GCP's AI-focused field teams are actively running priority plays in HCLS and FSI. GCP's H1 priority plays measured deal velocity and had DAF funding available for qualified ISV co-sell partners. Getting Mistral on that active deal list is a 30-day sprint — not a 6-month product integration — if someone owns the motion.</p>
+        <p>Submit Mistral AI Studio for GCP ISV Springboard partner status and build a joint GTM brief for GCP AI field teams, positioning Mistral's open-weight + sovereign deployment story as the answer to the regulated enterprise AI question GCP's field is already being asked.</p>
+        <div class="play-targets">
+          <div class="targets-label">Named Targets</div>
+          <div class="target-chips">
+            <span class="chip">GCP ISV Springboard</span>
+            <span class="chip">GCP AI Field · FSI</span>
+            <span class="chip">GCP AI Field · HCLS</span>
+            <span class="chip">GCP Partner Dev Managers</span>
+          </div>
+        </div>
+        <div class="proof-block">
+          <div class="proof-label">Proof Point</div>
+          <p>Selected for GCP's SWAT team at DoiT in H1 2026 — led NorAm partner GTM for AI priority plays across 13 subregions and 5 strategic verticals. Built the Partner Engagement Kit that mapped products to GCP's H1 priority plays and DAF co-sell motions. Know exactly what GCP field teams need from an ISV co-sell partner to put them on the active deal list.</p>
+        </div>
+      </div>
+
+      <!-- Play 3 -->
+      <div class="play-card">
+        <div class="play-number">3</div>
+        <span class="play-tag">Regulated Enterprise</span>
+        <h3>Private Offer Architecture for FSI + HCLS Buyers</h3>
+        <p>A public Marketplace listing is necessary but not sufficient for regulated buyers. FSI and HCLS accounts require custom pricing, MSA terms, compliance documentation (SOC 2 Type II, HIPAA BAA, FedRAMP path), and EDP drawdown eligibility — all of which CPPO private offers deliver without a direct enterprise sales cycle.</p>
+        <p>Design the private offer framework for Mistral's top-10 US regulated enterprise targets. The procurement friction disappears; the deal moves at the speed of the partner relationship. This is the unlock for the exact customer segment where Mistral's sovereign AI story lands hardest.</p>
+        <div class="play-targets">
+          <div class="targets-label">Named Targets</div>
+          <div class="target-chips">
+            <span class="chip">FSI · EDP commitment holders</span>
+            <span class="chip">HCLS · Bedrock AI deployments</span>
+            <span class="chip">Federal · FedRAMP path buyers</span>
+            <span class="chip">Regulated multinationals</span>
+          </div>
+        </div>
+        <div class="proof-block">
+          <div class="proof-label">Proof Point</div>
+          <p>At Cutover, co-created an AWS technical enablement funding motion that reduced FSI enterprise sales cycles by 67% (18 months → 180 days). The mechanism: map the commercial structure (MAP funding + co-sell) to the buyer's procurement requirements. Same architecture applies here with CPPO + EDP drawdown.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── 90-DAY PLAN ── -->
+<div class="plan-bg">
+  <div class="section">
+    <p class="section-label">Execution Roadmap</p>
+    <h2>90-Day Activation Plan</h2>
+    <p class="section-sub">Grounded in Mistral's existing partner ecosystem — Azure AI Foundry, SAP, Cisco, Snowflake — not a greenfield build. The AWS and GCP gaps are surgical additions, not a restart.</p>
+
+    <div class="timeline">
+      <div class="phase">
+        <div class="phase-dot">30</div>
+        <h4>Days 1–30</h4>
+        <h3>Audit &amp; Map</h3>
+        <ul>
+          <li>Audit Mistral's current AWS, GCP, and Azure partner status — map what's registered vs. missing</li>
+          <li>Meet AWS and GCP partner team contacts responsible for ISV co-sell eligibility</li>
+          <li>Interview Sales: where are US deals stalling because of procurement channel limitations?</li>
+          <li>Map top-10 US enterprise accounts by EDP commitment size with Mistral AI Studio in evaluation</li>
+        </ul>
+        <div class="phase-deliverable">
+          <div class="del-label">Deliverable</div>
+          <p>Current-state partner landscape map + prioritized co-sell eligibility gap list. No budget required, no external commitments.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot">60</div>
+        <h4>Days 31–60</h4>
+        <h3>First Activation</h3>
+        <ul>
+          <li>Submit AWS ISV Partner Path registration + CPPO structure application</li>
+          <li>Submit GCP ISV Springboard application + co-sell motion brief</li>
+          <li>Draft enterprise private offer framework for FSI/HCLS (legal, compliance, pricing tiers)</li>
+          <li>Brief AWS and GCP AI field teams with co-sell enablement materials</li>
+        </ul>
+        <div class="phase-deliverable">
+          <div class="del-label">Deliverable</div>
+          <p>AWS Marketplace listing submitted. GCP Springboard in review. First joint co-sell brief delivered to AWS PDM team.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot">90</div>
+        <h4>Days 61–90</h4>
+        <h3>First Pipeline</h3>
+        <ul>
+          <li>First CPPO-backed private offer transacted on AWS Marketplace</li>
+          <li>First GCP co-sell attributed deal recorded</li>
+          <li>KPI dashboard live: co-sell pipeline attribution, private offer volume, EDP drawdown rate</li>
+          <li>Present 12-month roadmap to leadership with resourcing and revenue model</li>
+        </ul>
+        <div class="phase-deliverable">
+          <div class="del-label">Deliverable</div>
+          <p>First partner-sourced deal through hyperscaler co-sell channel. Revenue attribution dashboard delivered to leadership.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHY ME ── -->
+<div style="background: var(--bg);">
+  <div class="section">
+    <p class="section-label">Why Me</p>
+    <h2>Built This Exact Motion — From Inside AWS and Out</h2>
+    <p class="section-sub">Four years inside AWS. The GCP SWAT team. AWS Migration Competency at Cutover. The co-sell eligibility mechanics this role requires are not new territory — they're the specific things I've been building for a decade.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">☁️</div>
+        <h4>AWS Co-Sell Mechanics — Insider</h4>
+        <p>Four years in three AWS roles (BDM, Program Manager, Sales Specialist). Know exactly how ISV Partner Path co-sell eligibility works, what AWS PDMs need to put a partner on their active deal list, and how CPPO private offers get structured and approved.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏗️</div>
+        <h4>AWS Migration Competency at Cutover</h4>
+        <p>Led cross-functional execution to secure AWS Migration Competency — the same commercial motion that unlocks MAP funding and CPPO co-sell coverage. Expanded co-sell coverage across NAMER, EMEA, ANZ, and APJ. Reduced FSI sales cycles 67%.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h4>GCP SWAT Team — AI Priority Plays</h4>
+        <p>Selected for GCP's NorAm AI SWAT team at DoiT. Built the Partner Engagement Kit mapping products to GCP's H1 AI priority plays across 13 subregions. Know what GCP AI field teams need from an ISV partner to get on the active co-sell list.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <h4>Zero-to-One Pipeline at Series B Velocity</h4>
+        <p>Built enterprise channel programs from scratch at DoiT, Cutover, and 66degrees — delivered measurable pipeline in 90 days across all three. $30M+ partner-sourced pipeline at DoiT alone (20× MBO). This role's 90-day activation plan is a pattern I've run before.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <h3>Leo Thornton</h3>
+  <p>AWS Cloud Alliance Leader &nbsp;·&nbsp; ISV Co-Sell &amp; Marketplace &nbsp;·&nbsp; AI &amp; Data Platform GTM</p>
+  <a class="contact-link" href="mailto:leondrus.thornton@gmail.com">leondrus.thornton@gmail.com</a>
+  <div class="credits">Prepared for Mistral AI · Product Manager, Cloud Partnerships · May 2026</div>
+</footer>
+
+</body>
+</html>
